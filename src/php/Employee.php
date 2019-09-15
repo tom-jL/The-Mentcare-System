@@ -27,19 +27,12 @@ class Employee {
      * @throws Exception - throws exception if gender != 'male' or 'female'
      */
     public function __construct($firstName, $lastName, $gender, $dateOfBirth, $clinic, $personalPhoneNumber, $email) {
-//        $this->firstName = $firstName;
         $this->setFirstName($firstName);
-//        $this->lastName = $lastName;
         $this->setLastName($lastName);
-//        $this->gender = $gender;
         $this->setGender($gender);
-//        $this->dateOfBirth = $dateOfBirth;
         $this->setDateOfBirth($dateOfBirth);
-//        $this->clinic = $clinic;
         $this->setClinic($clinic);
-//        $this->personalPhoneNumber = $personalPhoneNumber;
         $this->setPhoneNumber($personalPhoneNumber);
-//        $this->email = $email;
         $this->setEmail($email);
         $this->dateOfHire = new DateTime('now');
         $this->dateOfResignation = null;
