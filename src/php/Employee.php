@@ -43,7 +43,7 @@ class Employee {
      * Casts string to all lowercase then makes first char uppercase only.
      */
     public function setFirstName($firstName) {
-        $nameString = (string)$firstName;
+        $nameString = (string)trim($firstName);
         $nameString = strtolower($nameString);
         $nameString = ucfirst($nameString);
         $this->firstName = $nameString;
@@ -61,7 +61,7 @@ class Employee {
      * Casts string to all lowercase then makes first char uppercase only.
      */
     public function setLastName($lastName) {
-        $nameString = (string)$lastName;
+        $nameString = (string)trim($lastName);
         $nameString = strtolower($nameString);
         $nameString = ucfirst($nameString);
         $this->lastName = $nameString;
