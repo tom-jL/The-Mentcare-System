@@ -67,7 +67,7 @@ class Patient {
     }
 
     /**
-     * Function assigns a string value to the Patient gender attribute, Patient class attribute assignment
+     * Method assigns a string value to the Patient gender attribute, Patient class attribute assignment
      * is more flexible than the Employee class, as the patient my identify with a gender other than 'male' or 'female'
      * @param mixed $gender - Takes a string value to assign to the Patient class gender attribute.
      */

@@ -97,7 +97,7 @@ class Employee {
     /**
      * Sets the Employee dateOfBirth attribute to a DateTime object from a string.
      * @param $dateOfBirth - takes a string value in a "YYYY-mm-dd" format to be converted into a DateTime object.
-     * eg. "2012-12-20". Function will throw an exception of incorrect date format is used.
+     * eg. "2012-12-20". Method will throw an exception of incorrect date format is used.
      */
     public function setDateOfBirth($dateOfBirth) {
         try {
@@ -135,7 +135,7 @@ class Employee {
     }
 
     /**
-     * function sets a phone number from a string value to assign to personalPhoneNumber attribute
+     * Method sets a phone number from a string value to assign to personalPhoneNumber attribute
      * @param $phoneNumber - takes a string of numbers then trims value and assigns to personalPhoneNumber attribute
      */
     public function setPhoneNumber($phoneNumber) {
@@ -152,9 +152,9 @@ class Employee {
     }
 
     /**
-     * Function that assigns a string value email address to the email attribute.
+     * Method that assigns a string value email address to the email attribute.
      * @param $emailAddress - takes a string value for email attribute, must contain at least 1 '@' and 1 '.' chars to be valid.
-     * @throws Exception - throws exception if invalid email address string entered as function parameter.
+     * @throws Exception - throws exception if invalid email address string entered as method parameter.
      */
     public function setEmail($emailAddress) {
         $emailAddress = strtolower($emailAddress);
@@ -175,7 +175,7 @@ class Employee {
     }
 
     /**
-     * Function to get a string value of the hireDate DateTime object in "YYYY-mm-dd" format. Date is created by system
+     * Method to get a string value of the hireDate DateTime object in "YYYY-mm-dd" format. Date is created by system
      * when Employee object is constructed.
      * @return string - returns a string value of "YYYY-mm-dd" format for Employee hire date.
      */
@@ -184,7 +184,7 @@ class Employee {
     }
 
     /**
-     * function to set DateTime value for dateOfResignation, takes a String value argument
+     * Method to set DateTime value for dateOfResignation, takes a String value argument
      * @param null $dateOfResignation - takes a String of "YYYY-mm-dd" as date argument, eg. "2020-12-19"
      */
     public function setDateOfResignation($dateOfResignation): void {
