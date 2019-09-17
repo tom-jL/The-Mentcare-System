@@ -2,8 +2,8 @@
 require "Employee.php";
 
 class Manager extends Employee {
-    public $mangedClinic;
-    public $managementStartDate;
+    private $mangedClinic;
+    private $managementStartDate;
 
     /**
      * Manager constructor.
