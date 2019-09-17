@@ -5,6 +5,18 @@ class SystemAdmin extends Employee {
     private $adminRole;
     private $lastLoginDateTime;
 
+    /**
+     * SystemAdmin constructor.
+     * @param $firstName - parameter the same as Employee class
+     * @param $lastName - parameter the same as Employee class
+     * @param $gender - parameter the same as Employee class
+     * @param $dateOfBirth - parameter the same as Employee class
+     * @param $clinic - parameter the same as Employee class
+     * @param $personalPhoneNumber - parameter the same as Employee class
+     * @param $email - parameter the same as Employee class
+     * @param $adminRole - takes a string value to represent the admin role
+     * @throws Exception - throws exception if gender != 'male' or 'female'
+     */
     public function __construct($firstName, $lastName, $gender, $dateOfBirth, $clinic, $personalPhoneNumber, $email, $adminRole) {
         parent::__construct($firstName, $lastName, $gender, $dateOfBirth, $clinic, $personalPhoneNumber, $email);
         $this->setAdminRole($adminRole);
