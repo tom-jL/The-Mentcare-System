@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!session()->has('tabs')) {
+            session(['tabs' => [["route" => "home", "name" => "Home"], ["route" => "/", "name" => "test"]]]);
+        }
         return view('home');
     }
 }

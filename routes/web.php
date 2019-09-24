@@ -13,8 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/opentab/{id}', 'TabController@openTab')->name('opentab');
+Route::post('/closetab/{id}', 'TabController@closeTab')->name('closetab');
