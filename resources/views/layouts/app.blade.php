@@ -4,21 +4,20 @@
 <div id="app">
 
     <div class="container">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs justify-content-center">
 
             @foreach (Session::get('tabs') as $tab)
-                <li class="active nav-item">
-                    <form method="POST" action="{{ route('opentab', $loop->index)}}">
+                <li class="active nav-link">
+                    <form method="POST" style="display: none;" id="opentab{{$loop->index}}" action="{{ route('opentab', $loop->index)}}">
                         @csrf
-                        <button type="submit" class="nav-link">
-                            {{$tab['name']}}
-                        </button>
                     </form>
+                    <form method="POST" style="display: none;" id="closetab{{$loop->index}}" action="{{ route('closetab', $loop->index)}}">
+                        @csrf
+                    </form>
+                    <a class="" href="#" onclick="event.preventDefault(); document.getElementById('opentab{{$loop->index}}').submit();">{{$tab['name']}}</a>
                     @if ($tab['name'] != 'Home')
-                        <form method="POST" action="{{ route('closetab', $loop->index)}}">
-                            @csrf
-                            <button class="float-right close" type="submit"> &times;</button>
-                        </form>
+                        <a class="" href="#" onclick="event.preventDefault(); document.getElementById('closetab{{$loop->index}}').submit();">&times;</a>
+
                     @endif
                 </li>
             @endforeach

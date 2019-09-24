@@ -26,4 +26,6 @@ class TabController extends Controller
         session()->put('tabs', $tabs);
         return redirect()->route($tabs[$id-1]['route']);
     }
+
+    //TODO create new tab function
 }
