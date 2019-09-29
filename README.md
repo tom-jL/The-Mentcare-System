@@ -48,7 +48,7 @@ sites:
 
 - SSH into your machine using `vagrant ssh` .
 
-- Create a database using `mysql -u root -p`; enter `secret` and `create database joblink;` .
+- Create a database using `mysql -u root -p`; enter `secret` and `create database mentcare;` .
 
 - Make sure the .env file in your mentcare directory points to your database.
 #### .env example
@@ -56,7 +56,7 @@ sites:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=joblink
+DB_DATABASE=mentcare
 DB_USERNAME=root
 DB_PASSWORD=secret
 ```
