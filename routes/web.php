@@ -18,6 +18,14 @@ Route::get('/', function () {
 Auth::routes(['register' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@Login')->name('admin.login,submit');
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/logout', 'Auth\adminLoginController@logout')->name('admin.logout');
+});
 
 Route::post('/opentab/{id}', 'TabController@openTab')->name('opentab');
 Route::post('/closetab/{id}', 'TabController@closeTab')->name('closetab');
