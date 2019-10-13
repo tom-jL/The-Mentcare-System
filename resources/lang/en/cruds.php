@@ -66,8 +66,8 @@ return [
         ],
     ],
     'service'        => [
-        'title'          => 'Services',
-        'title_singular' => 'Service',
+        'title'          => 'Prescriptions',
+        'title_singular' => 'Prescription',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => '',
@@ -97,7 +97,7 @@ return [
             'phone_helper'      => '',
             'photo'             => 'Photo',
             'photo_helper'      => '',
-            'services'          => 'Services',
+            'services'          => 'Prescriptions',
             'services_helper'   => '',
             'created_at'        => 'Created at',
             'created_at_helper' => '',
@@ -108,8 +108,8 @@ return [
         ],
     ],
     'client'         => [
-        'title'          => 'Clients',
-        'title_singular' => 'Client',
+        'title'          => 'Patients',
+        'title_singular' => 'Patient',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => '',
