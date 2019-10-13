@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@can('client_create')
+@can('patient_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.clients.create") }}">
@@ -32,6 +32,9 @@
                     </th>
                     <th>
                         {{ trans('cruds.client.fields.email') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.client.fields.services') }}
                     </th>
                     <th>
                         &nbsp;
@@ -92,6 +95,7 @@
 { data: 'name', name: 'name' },
 { data: 'phone', name: 'phone' },
 { data: 'email', name: 'email' },
+{ data: 'services', name: 'services.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     order: [[ 1, 'desc' ]],

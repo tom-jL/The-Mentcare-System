@@ -15,7 +15,7 @@ class ClientsApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('client_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('patient_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new ClientResource(Client::all());
     }
@@ -23,6 +23,7 @@ class ClientsApiController extends Controller
     public function store(StoreClientRequest $request)
     {
         $client = Client::create($request->all());
+        $client->services()->sync($request->input('services', []));
 
         return (new ClientResource($client))
             ->response()
@@ -31,14 +32,15 @@ class ClientsApiController extends Controller
 
     public function show(Client $client)
     {
-        abort_if(Gate::denies('client_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('patient_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClientResource($client);
+        return new ClientResource($client->load(['services']));
     }
 
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->all());
+        $client->services()->sync($request->input('services', []));
 
         return (new ClientResource($client))
             ->response()
@@ -47,7 +49,7 @@ class ClientsApiController extends Controller
 
     public function destroy(Client $client)
     {
-        abort_if(Gate::denies('client_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('patient_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $client->delete();
 

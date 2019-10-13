@@ -15,7 +15,7 @@ class ServicesApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('service_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('prescription_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new ServiceResource(Service::all());
     }
@@ -31,7 +31,7 @@ class ServicesApiController extends Controller
 
     public function show(Service $service)
     {
-        abort_if(Gate::denies('service_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('prescription_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new ServiceResource($service);
     }
@@ -47,7 +47,7 @@ class ServicesApiController extends Controller
 
     public function destroy(Service $service)
     {
-        abort_if(Gate::denies('service_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('prescription_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $service->delete();
 

@@ -25,9 +25,9 @@ class Service extends Model
         'deleted_at',
     ];
 
-    public function employees()
+    public function clients()
     {
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsToMany(Client::class);
     }
 
     public function appointments()

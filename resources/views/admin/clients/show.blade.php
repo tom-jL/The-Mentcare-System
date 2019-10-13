@@ -42,6 +42,16 @@
                             {{ $client->email }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.services') }}
+                        </th>
+                        <td>
+                            @foreach($client->services as $id => $services)
+                                <span class="label label-info label-many">{{ $services->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">

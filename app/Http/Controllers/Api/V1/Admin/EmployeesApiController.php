@@ -26,7 +26,7 @@ class EmployeesApiController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         $employee = Employee::create($request->all());
-        $employee->services()->sync($request->input('services', []));
+
 
         if ($request->input('photo', false)) {
             $employee->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
@@ -41,13 +41,13 @@ class EmployeesApiController extends Controller
     {
         abort_if(Gate::denies('employee_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new EmployeeResource($employee->load(['services']));
+        return new EmployeeResource($employee);
     }
 
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $employee->update($request->all());
-        $employee->services()->sync($request->input('services', []));
+
 
         if ($request->input('photo', false)) {
             if (!$employee->photo || $request->input('photo') !== $employee->photo->file_name) {

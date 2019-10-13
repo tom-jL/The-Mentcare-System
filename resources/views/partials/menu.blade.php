@@ -52,7 +52,7 @@
                     </ul>
                 </li>
             @endcan
-            @can('service_access')
+            @can('prescription_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.services.index") }}" class="nav-link {{ request()->is('admin/services') || request()->is('admin/services/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-cogs nav-icon">
@@ -72,7 +72,7 @@
                     </a>
                 </li>
             @endcan
-            @can('client_access')
+            @can('patient_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.clients.index") }}" class="nav-link {{ request()->is('admin/clients') || request()->is('admin/clients/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-cogs nav-icon">
