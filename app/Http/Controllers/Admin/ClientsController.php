@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyClientRequest;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Service;
+use App\Prescription;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class ClientsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = Client::with(['services'])->select(sprintf('%s.*', (new Client)->table));
+            $query = Client::with(['services','prescriptions'])->select(sprintf('%s.*', (new Client)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -62,7 +63,17 @@ class ClientsController extends Controller
                 return implode(' ', $labels);
             });
 
-            $table->rawColumns(['actions', 'placeholder','services']);
+            $table->editColumn('prescriptions', function ($row) {
+                $labels = [];
+
+                foreach ($row->prescriptions as $prescription) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $prescription->name);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            $table->rawColumns(['actions', 'placeholder','services','prescriptions']);
 
             return $table->make(true);
         }
@@ -75,14 +86,16 @@ class ClientsController extends Controller
         abort_if(Gate::denies('patient_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $services = Service::all()->pluck('name', 'id');
+        $prescriptions = Prescription::all()->pluck('name','id');
 
-        return view('admin.clients.create', compact('services'));
+        return view('admin.clients.create', compact('services','prescriptions'));
     }
 
     public function store(StoreClientRequest $request)
     {
         $client = Client::create($request->all());
         $client->services()->sync($request->input('services', []));
+        $client->prescriptions()->sync($request->input('prescriptions', []));
 
         return redirect()->route('admin.clients.index');
     }
@@ -91,14 +104,16 @@ class ClientsController extends Controller
     {
         abort_if(Gate::denies('patient_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $services = Service::all()->pluck('name', 'id');
-        $client->load('services');
-        return view('admin.clients.edit', compact('services','client'));
+        $prescriptions = Prescription::all()->pluck('name', 'id');
+        $client->load('services','prescriptions');
+        return view('admin.clients.edit', compact('services','prescriptions','client'));
     }
 
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->all());
         $client->services()->sync($request->input('services', []));
+        $client->prescriptions()->sync($request->input('prescriptions', []));
 
         return redirect()->route('admin.clients.index');
     }
@@ -107,7 +122,7 @@ class ClientsController extends Controller
     {
         abort_if(Gate::denies('patient_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $client->load('services');
+        $client->load('services','prescriptions');
 
         return view('admin.clients.show', compact('client'));
     }

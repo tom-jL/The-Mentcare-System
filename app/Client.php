@@ -35,4 +35,9 @@ class Client extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+
+    public function prescriptions()
+    {
+        return $this->belongsToMany(Prescription::class);
+    }
 }

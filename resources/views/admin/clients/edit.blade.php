@@ -64,6 +64,24 @@
                     {{ trans('cruds.client.fields.services_helper') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('prescriptions') ? 'has-error' : '' }}">
+                <label for="prescriptions">{{ trans('cruds.client.fields.prescriptions') }}
+                    <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
+                <select name="prescriptions[]" id="prescriptions" class="form-control select2" multiple="multiple">
+                    @foreach($prescriptions as $id => $prescriptions)
+                        <option value="{{ $id }}" {{ (in_array($id, old('prescriptions', [])) || isset($client) && $client->prescriptions->contains($id)) ? 'selected' : '' }}>{{ $prescriptions }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('prescriptions'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('prescriptions') }}
+                    </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.client.fields.prescriptions_helper') }}
+                </p>
+            </div>
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

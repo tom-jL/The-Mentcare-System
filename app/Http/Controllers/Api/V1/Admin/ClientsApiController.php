@@ -24,6 +24,7 @@ class ClientsApiController extends Controller
     {
         $client = Client::create($request->all());
         $client->services()->sync($request->input('services', []));
+        $client->prescriptions()->sync($request->input('prescriptions', []));
 
         return (new ClientResource($client))
             ->response()
@@ -34,13 +35,14 @@ class ClientsApiController extends Controller
     {
         abort_if(Gate::denies('patient_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClientResource($client->load(['services']));
+        return new ClientResource($client->load(['services','prescriptions']));
     }
 
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->all());
         $client->services()->sync($request->input('services', []));
+        $client->prescriptions()->sync($request->input('prescriptions', []));
 
         return (new ClientResource($client))
             ->response()

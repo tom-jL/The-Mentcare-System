@@ -23,8 +23,8 @@ class PermissionRoleTableSeeder extends Seeder
         //Reception Staff Permissions
         Role::findOrFail(3)->permissions()->sync(App\Permission::find([19, 21, 24, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]));
         //Doctor Permissions
-        Role::findOrFail(4)->permissions()->sync(App\Permission::find([17, 18, 19, 21, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]));
+        Role::findOrFail(4)->permissions()->sync(App\Permission::find([17, 18, 19, 21, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]));
         //Nurse Permissions
-        Role::findOrFail(5)->permissions()->sync(App\Permission::find([19, 21, 28, 29, 31, 32, 33, 34, 35, 36]));
+        Role::findOrFail(5)->permissions()->sync(App\Permission::find([19, 21, 28, 29, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]));
     }
 }

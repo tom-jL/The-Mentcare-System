@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Service extends Model
+class Prescription extends Model
 {
     use SoftDeletes;
 
-    public $table = 'services';
+    public $table = 'prescriptions';
 
     protected $dates = [
         'created_at',
@@ -20,6 +20,7 @@ class Service extends Model
     protected $fillable = [
         'name',
         'price',
+        'dosage',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -29,11 +30,5 @@ class Service extends Model
     {
         return $this->belongsToMany(Client::class);
     }
-
-    public function appointments()
-    {
-        return $this->belongsToMany(Appointment::class);
-    }
-
 
 }

@@ -52,13 +52,23 @@
                     </ul>
                 </li>
             @endcan
-            @can('prescription_access')
+            @can('service_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.services.index") }}" class="nav-link {{ request()->is('admin/services') || request()->is('admin/services/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-cogs nav-icon">
 
                         </i>
                         {{ trans('cruds.service.title') }}
+                    </a>
+                </li>
+            @endcan
+            @can('prescription_access')
+                <li class="nav-item">
+                    <a href="{{ route("admin.prescriptions.index") }}" class="nav-link {{ request()->is('admin/prescriptions') || request()->is('admin/prescriptions/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-cogs nav-icon">
+
+                        </i>
+                        {{ trans('cruds.prescription.title') }}
                     </a>
                 </li>
             @endcan

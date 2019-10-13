@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Service;
+use App\Prescription;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class StoreServiceRequest extends FormRequest
+class StorePrescriptionRequest extends FormRequest
 {
     public function authorize()
     {
-        abort_if(Gate::denies('service_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('prescription_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }

@@ -24,9 +24,9 @@ class ServicesController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'prescription_show';
-                $editGate      = 'prescription_edit';
-                $deleteGate    = 'prescription_delete';
+                $viewGate      = 'service_show';
+                $editGate      = 'service_edit';
+                $deleteGate    = 'service_delete';
                 $crudRoutePart = 'services';
 
                 return view('partials.datatablesActions', compact(
@@ -58,7 +58,7 @@ class ServicesController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('prescription_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('service_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.services.create');
     }
@@ -72,7 +72,7 @@ class ServicesController extends Controller
 
     public function edit(Service $service)
     {
-        abort_if(Gate::denies('prescription_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('service_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.services.edit', compact('service'));
     }
@@ -86,14 +86,14 @@ class ServicesController extends Controller
 
     public function show(Service $service)
     {
-        abort_if(Gate::denies('prescription_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('service_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.services.show', compact('service'));
     }
 
     public function destroy(Service $service)
     {
-        abort_if(Gate::denies('prescription_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('service_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $service->delete();
 
