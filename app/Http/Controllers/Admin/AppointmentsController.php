@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Appointment;
-use App\Client;
+use App\Patient;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyAppointmentRequest;
@@ -80,7 +80,7 @@ class AppointmentsController extends Controller
     {
         abort_if(Gate::denies('appointment_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $clients = Client::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $clients = Patient::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $employees = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -101,7 +101,7 @@ class AppointmentsController extends Controller
     {
         abort_if(Gate::denies('appointment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $clients = Client::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $clients = Patient::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $employees = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 

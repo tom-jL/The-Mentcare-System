@@ -1,9 +1,9 @@
 <?php
 
-use App\Client;
+use App\Patient;
 use Faker\Generator as Faker;
 
-$factory->define(Client::class, function (Faker $faker) {
+$factory->define(Patient::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,

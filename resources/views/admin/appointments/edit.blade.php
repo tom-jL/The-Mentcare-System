@@ -10,16 +10,16 @@
         <form action="{{ route("admin.appointments.update", [$appointment->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="form-group {{ $errors->has('client_id') ? 'has-error' : '' }}">
-                <label for="client">{{ trans('cruds.appointment.fields.client') }}*</label>
-                <select name="client_id" id="client" class="form-control select2" required>
-                    @foreach($clients as $id => $client)
-                        <option value="{{ $id }}" {{ (isset($appointment) && $appointment->client ? $appointment->client->id : old('client_id')) == $id ? 'selected' : '' }}>{{ $client }}</option>
+            <div class="form-group {{ $errors->has('patient_id') ? 'has-error' : '' }}">
+                <label for="patient">{{ trans('cruds.appointment.fields.patient') }}*</label>
+                <select name="patient_id" id="patient" class="form-control select2" required>
+                    @foreach($patients as $id => $patient)
+                        <option value="{{ $id }}" {{ (isset($appointment) && $appointment->patient ? $appointment->patient->id : old('patient_id')) == $id ? 'selected' : '' }}>{{ $patient }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('client_id'))
+                @if($errors->has('patient_id'))
                     <em class="invalid-feedback">
-                        {{ $errors->first('client_id') }}
+                        {{ $errors->first('patient_id') }}
                     </em>
                 @endif
             </div>

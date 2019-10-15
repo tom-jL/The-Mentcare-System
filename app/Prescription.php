@@ -26,9 +26,9 @@ class Prescription extends Model
         'deleted_at',
     ];
 
-    public function clients()
+    public function patients()
     {
-        return $this->belongsToMany(Client::class)->withTimestamps();
+        return $this->belongsToMany(Patient::class)->withTimestamps();
     }
 
 }

@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.client.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.patient.title') }}
     </div>
 
     <div class="card-body">
@@ -12,39 +12,39 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.id') }}
+                            {{ trans('cruds.patient.fields.id') }}
                         </th>
                         <td>
-                            {{ $client->id }}
+                            {{ $patient->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.name') }}
+                            {{ trans('cruds.patient.fields.name') }}
                         </th>
                         <td>
-                            {{ $client->name }}
+                            {{ $patient->name }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.phone') }}
+                            {{ trans('cruds.patient.fields.phone') }}
                         </th>
                         <td>
-                            {{ $client->phone }}
+                            {{ $patient->phone }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.email') }}
+                            {{ trans('cruds.patient.fields.email') }}
                         </th>
                         <td>
-                            {{ $client->email }}
+                            {{ $patient->email }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.prescriptions') }}
+                            {{ trans('cruds.patient.fields.prescriptions') }}
                         </th>
                         <td>
                             <table class="table table-bordered table-striped">
@@ -56,24 +56,21 @@
                                         <td>
                                             Date/Time Issued
                                         </td>
-                                        <td>
-
-                                        </td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($client->prescriptions as $id => $prescription)
+                                    @foreach($patient->prescriptions as $id => $prescription)
                                         <tr>
                                             <td>
                                                 <span class="label label-info label-many">{{ $prescription->name }}</span>
+                                                @can('prescription_show')
+                                                    <a class="btn btn-xs btn-primary" href="{{ url("admin/prescriptions/{$prescription->id}") }}">
+                                                        View
+                                                    </a>
+                                                @endcan
                                             </td>
                                             <td>
                                                 {{ $prescription->created_at }}
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-xs btn-primary" href="{{ url("admin/prescriptions/{$prescription->id}") }}">
-                                                    View
-                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -83,7 +80,7 @@
                     </tr>
                 </tbody>
             </table>
-            <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
+            <a style="margin-top:20px;" class="btn btn-default" href="{{ route('patients') }}">
                 {{ trans('global.back_to_list') }}
             </a>
         </div>

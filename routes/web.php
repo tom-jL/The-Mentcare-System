@@ -31,9 +31,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('employees/media', 'EmployeesController@storeMedia')->name('employees.storeMedia');
     Route::resource('employees', 'EmployeesController');
 
-    // Clients
-    Route::delete('clients/destroy', 'ClientsController@massDestroy')->name('clients.massDestroy');
-    Route::resource('clients', 'ClientsController');
+    // Patients
+    Route::delete('patients/destroy', 'PatientsController@massDestroy')->name('patients.massDestroy');
+    Route::resource('patients', 'PatientsController');
 
     // Appointments
     Route::delete('appointments/destroy', 'AppointmentsController@massDestroy')->name('appointments.massDestroy');

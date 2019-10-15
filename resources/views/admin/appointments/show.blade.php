@@ -20,10 +20,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.appointment.fields.client') }}
+                            {{ trans('cruds.appointment.fields.patient') }}
                         </th>
                         <td>
-                            {{ $appointment->client->name ?? '' }}
+                            {{ $appointment->patient->name ?? '' }}
                         </td>
                     </tr>
                     <tr>

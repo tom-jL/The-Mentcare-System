@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateClientPrescriptionPivotWithTimestamps extends Migration
+class UpdatePatientPrescriptionPivotWithTimestamps extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class UpdateClientPrescriptionPivotWithTimestamps extends Migration
      */
     public function up()
     {
-        Schema::table('client_prescription', function (Blueprint $table) {
+        Schema::table('patient_prescription', function (Blueprint $table) {
             $table->timestamps();
 
         });
@@ -26,7 +26,7 @@ class UpdateClientPrescriptionPivotWithTimestamps extends Migration
      */
     public function down()
     {
-        Schema::table('client_prescription', function (Blueprint $table) {
+        Schema::table('patient_prescription', function (Blueprint $table) {
             //
         });
     }

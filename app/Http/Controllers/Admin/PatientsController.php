@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Client;
+use App\Patient;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyClientRequest;
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
+use App\Http\Requests\MassDestroyPatientRequest;
+use App\Http\Requests\StorePatientRequest;
+use App\Http\Requests\UpdatePatientRequest;
 use App\Service;
 use App\Prescription;
 use Gate;
@@ -14,12 +14,12 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
-class ClientsController extends Controller
+class PatientsController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = Client::with(['prescriptions'])->select(sprintf('%s.*', (new Client)->table));
+            $query = Patient::with(['prescriptions'])->select(sprintf('%s.*', (new Patient)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -29,7 +29,7 @@ class ClientsController extends Controller
                 $viewGate      = 'patient_show';
                 $editGate      = 'patient_edit';
                 $deleteGate    = 'patient_delete';
-                $crudRoutePart = 'clients';
+                $crudRoutePart = 'patients';
 
                 return view('partials.datatablesActions', compact(
                     'viewGate',
@@ -68,7 +68,7 @@ class ClientsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.clients.index');
+        return view('admin.patients.index');
     }
 
     public function create()
@@ -77,54 +77,54 @@ class ClientsController extends Controller
 
         $prescriptions = Prescription::all()->pluck('name','id');
 
-        return view('admin.clients.create', compact('prescriptions'));
+        return view('admin.patients.create', compact('prescriptions'));
     }
 
-    public function store(StoreClientRequest $request)
+    public function store(StorePatientRequest $request)
     {
-        $client = Client::create($request->all());
-        $client->prescriptions()->sync($request->input('prescriptions', []));
+        $patient = Patient::create($request->all());
+        $patient->prescriptions()->sync($request->input('prescriptions', []));
 
-        return redirect()->route('admin.clients.index');
+        return redirect()->route('admin.patients.index');
     }
 
-    public function edit(Client $client)
+    public function edit(Patient $patient)
     {
         abort_if(Gate::denies('patient_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $prescriptions = Prescription::all()->pluck('name', 'id');
-        $client->load('prescriptions');
-        return view('admin.clients.edit', compact('prescriptions','client'));
+        $patient->load('prescriptions');
+        return view('admin.patients.edit', compact('prescriptions','patient'));
     }
 
-    public function update(UpdateClientRequest $request, Client $client)
+    public function update(UpdatePatientRequest $request, Patient $patient)
     {
-        $client->update($request->all());
-        $client->prescriptions()->sync($request->input('prescriptions', []));
+        $patient->update($request->all());
+        $patient->prescriptions()->sync($request->input('prescriptions', []));
 
-        return redirect()->route('admin.clients.index');
+        return redirect()->route('admin.patients.index');
     }
 
-    public function show(Client $client)
+    public function show(Patient $patient)
     {
         abort_if(Gate::denies('patient_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $client->load('prescriptions');
+        $patient->load('prescriptions');
 
-        return view('admin.clients.show', compact('client'));
+        return view('admin.patients.show', compact('patient'));
     }
 
-    public function destroy(Client $client)
+    public function destroy(Patient $patient)
     {
         abort_if(Gate::denies('patient_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $client->delete();
+        $patient->delete();
 
         return back();
     }
 
-    public function massDestroy(MassDestroyClientRequest $request)
+    public function massDestroy(MassDestroyPatientRequest $request)
     {
-        Client::whereIn('id', request('ids'))->delete();
+        Patient::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

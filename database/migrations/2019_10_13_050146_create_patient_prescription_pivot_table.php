@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientPrescriptionPivotTable extends Migration
+class CreatePatientPrescriptionPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateClientPrescriptionPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_prescription', function (Blueprint $table) {
-            $table->unsignedInteger('client_id');
+        Schema::create('patient_prescription', function (Blueprint $table) {
+            $table->unsignedInteger('patient_id');
 
-            $table->foreign('client_id', 'client_id_fk_360922')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('patient_id', 'patient_id_fk_360922')->references('id')->on('patients')->onDelete('cascade');
 
             $table->unsignedInteger('prescription_id');
 
@@ -32,6 +32,6 @@ class CreateClientPrescriptionPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_prescription');
+        Schema::dropIfExists('patient_prescription');
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Client;
+use App\Patient;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class UpdateClientRequest extends FormRequest
+class UpdatePatientRequest extends FormRequest
 {
     public function authorize()
     {
@@ -19,12 +19,6 @@ class UpdateClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'services.*' => [
-                'integer',
-            ],
-            'services'   => [
-                'array',
-            ],
             'prescriptions.*' => [
                 'integer',
             ],

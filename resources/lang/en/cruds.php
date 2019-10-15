@@ -125,7 +125,7 @@ return [
             'deleted_at_helper' => '',
         ],
     ],
-    'client'         => [
+    'patient'         => [
         'title'          => 'Patients',
         'title_singular' => 'Patient',
         'fields'         => [
@@ -153,8 +153,8 @@ return [
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
-            'client'             => 'Client',
-            'client_helper'      => '',
+            'patient'             => 'Patient',
+            'patient_helper'      => '',
             'employee'           => 'Employee',
             'employee_helper'    => '',
             'start_time'         => 'Start Time',

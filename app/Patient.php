@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Client extends Model
+class Patient extends Model
 {
     use SoftDeletes;
 
-    public $table = 'clients';
+    public $table = 'patients';
 
     protected $dates = [
         'created_at',
@@ -28,7 +28,7 @@ class Client extends Model
 
     public function appointments()
     {
-        return $this->hasMany(Appointment::class, 'client_id', 'id');
+        return $this->hasMany(Appointment::class, 'patient_id', 'id');
     }
 
     public function prescriptions()

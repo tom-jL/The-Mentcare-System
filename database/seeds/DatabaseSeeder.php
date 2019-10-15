@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
             RoleUserTableSeeder::class,
             ServicesTableSeeder::class,
             EmployeesTableSeeder::class,
-            ClientsTableSeeder::class,
+            PatientsTableSeeder::class,
             AppointmentsTableSeeder::class,
             PrescriptionTableSeeder::class,
         ]);

@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Client;
+use App\Patient;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class StoreClientRequest extends FormRequest
+class StorePatientRequest extends FormRequest
 {
     public function authorize()
     {
