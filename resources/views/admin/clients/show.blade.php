@@ -44,16 +44,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.services') }}
-                        </th>
-                        <td>
-                            @foreach($client->services as $id => $services)
-                                <span class="label label-info label-many">{{ $services->name }}</span>
-                            @endforeach
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.client.fields.prescriptions') }}
                         </th>
                         <td>

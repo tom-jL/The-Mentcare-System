@@ -137,8 +137,6 @@ return [
             'phone_helper'      => '',
             'email'             => 'Email',
             'email_helper'      => '',
-            'services'          => 'Services',
-            'services_helper'   => '',
             'prescriptions'     => 'Prescriptions',
             'prescriptions_helper'   => '',
             'created_at'        => 'Created at',

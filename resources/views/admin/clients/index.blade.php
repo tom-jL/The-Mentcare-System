@@ -34,9 +34,6 @@
                         {{ trans('cruds.client.fields.email') }}
                     </th>
                     <th>
-                        {{ trans('cruds.client.fields.services') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.client.fields.prescriptions') }}
                     </th>
                     <th>
@@ -98,7 +95,6 @@
 { data: 'name', name: 'name' },
 { data: 'phone', name: 'phone' },
 { data: 'email', name: 'email' },
-{ data: 'services', name: 'services.name' },
 { data: 'prescriptions', name: 'prescriptions.name'},
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

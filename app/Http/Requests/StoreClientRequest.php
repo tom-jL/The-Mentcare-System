@@ -19,12 +19,6 @@ class StoreClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'services.*' => [
-                'integer',
-            ],
-            'services'   => [
-                'array',
-            ],
             'prescriptions.*' => [
                 'integer',
             ],
