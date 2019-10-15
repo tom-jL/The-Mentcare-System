@@ -39,7 +39,7 @@
                             {{ trans('cruds.prescription.fields.dosage') }}
                         </th>
                         <td>
-                            ${{ $prescription->dosage }}
+                            {{ $prescription->dosage }}
                         </td>
                     </tr>
                 </tbody>

@@ -25,6 +25,12 @@ class StoreClientRequest extends FormRequest
             'services'   => [
                 'array',
             ],
+            'prescriptions.*' => [
+                'integer',
+            ],
+            'prescriptions'   => [
+                'array',
+            ],
         ];
     }
 }

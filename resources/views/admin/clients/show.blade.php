@@ -57,9 +57,38 @@
                             {{ trans('cruds.client.fields.prescriptions') }}
                         </th>
                         <td>
-                            @foreach($client->prescriptions as $id => $prescriptions)
-                                <span class="label label-info label-many">{{ $prescriptions->name }}</span>
-                            @endforeach
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            Name
+                                        </td>
+                                        <td>
+                                            Date/Time Issued
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($client->prescriptions as $id => $prescription)
+                                        <tr>
+                                            <td>
+                                                <span class="label label-info label-many">{{ $prescription->name }}</span>
+                                            </td>
+                                            <td>
+                                                {{ $prescription->created_at }}
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-xs btn-primary" href="{{ url("admin/prescriptions/{$prescription->id}") }}">
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
                 </tbody>

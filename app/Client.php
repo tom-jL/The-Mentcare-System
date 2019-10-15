@@ -38,6 +38,7 @@ class Client extends Model
 
     public function prescriptions()
     {
-        return $this->belongsToMany(Prescription::class);
+        return $this->belongsToMany(Prescription::class)->withTimestamps();
+
     }
 }
