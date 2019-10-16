@@ -66,3 +66,4 @@ DB_PASSWORD=secret
 ```
 
 - Optionally add mentcare.test to your hosts files, otherwise access the website at [192.168.10.10](http://192.168.10.10)
+
