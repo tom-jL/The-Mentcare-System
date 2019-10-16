@@ -25,13 +25,11 @@ class Service extends Model
         'deleted_at',
     ];
 
-    public function employees()
-    {
-        return $this->belongsToMany(Employee::class);
-    }
 
     public function appointments()
     {
         return $this->belongsToMany(Appointment::class);
     }
+
+
 }

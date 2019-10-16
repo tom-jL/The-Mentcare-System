@@ -22,12 +22,7 @@ class UpdateEmployeeRequest extends FormRequest
             'name'       => [
                 'required',
             ],
-            'services.*' => [
-                'integer',
-            ],
-            'services'   => [
-                'array',
-            ],
+
         ];
     }
 }

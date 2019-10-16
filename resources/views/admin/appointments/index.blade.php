@@ -25,7 +25,7 @@
                         {{ trans('cruds.appointment.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.appointment.fields.client') }}
+                        {{ trans('cruds.appointment.fields.patient') }}
                     </th>
                     <th>
                         {{ trans('cruds.appointment.fields.employee') }}
@@ -101,7 +101,7 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'client_name', name: 'client.name' },
+{ data: 'patient_name', name: 'patient.name' },
 { data: 'employee_name', name: 'employee.name' },
 { data: 'start_time', name: 'start_time' },
 { data: 'finish_time', name: 'finish_time' },

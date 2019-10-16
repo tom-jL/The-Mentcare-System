@@ -23,7 +23,7 @@ class Appointment extends Model
     protected $fillable = [
         'price',
         'comments',
-        'client_id',
+        'patient_id',
         'start_time',
         'created_at',
         'updated_at',
@@ -32,9 +32,9 @@ class Appointment extends Model
         'finish_time',
     ];
 
-    public function client()
+    public function patient()
     {
-        return $this->belongsTo(Client::class, 'client_id');
+        return $this->belongsTo(Patient::class, 'patient_id');
     }
 
     public function employee()

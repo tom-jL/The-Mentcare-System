@@ -62,6 +62,16 @@
                     </a>
                 </li>
             @endcan
+            @can('prescription_access')
+                <li class="nav-item">
+                    <a href="{{ route("admin.prescriptions.index") }}" class="nav-link {{ request()->is('admin/prescriptions') || request()->is('admin/prescriptions/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-cogs nav-icon">
+
+                        </i>
+                        {{ trans('cruds.prescription.title') }}
+                    </a>
+                </li>
+            @endcan
             @can('employee_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.employees.index") }}" class="nav-link {{ request()->is('admin/employees') || request()->is('admin/employees/*') ? 'active' : '' }}">
@@ -72,13 +82,13 @@
                     </a>
                 </li>
             @endcan
-            @can('client_access')
+            @can('patient_access')
                 <li class="nav-item">
-                    <a href="{{ route("admin.clients.index") }}" class="nav-link {{ request()->is('admin/clients') || request()->is('admin/clients/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.patients.index") }}" class="nav-link {{ request()->is('admin/patients') || request()->is('admin/patients/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-cogs nav-icon">
 
                         </i>
-                        {{ trans('cruds.client.title') }}
+                        {{ trans('cruds.patient.title') }}
                     </a>
                 </li>
             @endcan

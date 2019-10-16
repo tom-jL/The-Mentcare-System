@@ -19,7 +19,7 @@ class UpdateAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'client_id'   => [
+            'patient_id'   => [
                 'required',
                 'integer',
             ],

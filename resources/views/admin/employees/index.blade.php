@@ -37,9 +37,6 @@
                         {{ trans('cruds.employee.fields.photo') }}
                     </th>
                     <th>
-                        {{ trans('cruds.employee.fields.services') }}
-                    </th>
-                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -99,7 +96,6 @@
 { data: 'email', name: 'email' },
 { data: 'phone', name: 'phone' },
 { data: 'photo', name: 'photo', sortable: false, searchable: false },
-{ data: 'services', name: 'services.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     order: [[ 1, 'desc' ]],

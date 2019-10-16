@@ -55,8 +55,4 @@ class Employee extends Model implements HasMedia
         return $file;
     }
 
-    public function services()
-    {
-        return $this->belongsToMany(Service::class);
-    }
 }

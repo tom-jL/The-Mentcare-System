@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Appointment;
-use App\Client;
+use App\Patient;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyAppointmentRequest;
@@ -20,7 +20,7 @@ class AppointmentsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = Appointment::with(['client', 'employee', 'services'])->select(sprintf('%s.*', (new Appointment)->table));
+            $query = Appointment::with(['patient', 'employee', 'services'])->select(sprintf('%s.*', (new Appointment)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -44,8 +44,8 @@ class AppointmentsController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : "";
             });
-            $table->addColumn('client_name', function ($row) {
-                return $row->client ? $row->client->name : '';
+            $table->addColumn('patient_name', function ($row) {
+                return $row->patient ? $row->patient->name : '';
             });
 
             $table->addColumn('employee_name', function ($row) {
@@ -68,7 +68,7 @@ class AppointmentsController extends Controller
                 return implode(' ', $labels);
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'client', 'employee', 'services']);
+            $table->rawColumns(['actions', 'placeholder', 'patient', 'employee', 'services']);
 
             return $table->make(true);
         }
@@ -80,13 +80,13 @@ class AppointmentsController extends Controller
     {
         abort_if(Gate::denies('appointment_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $clients = Client::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $patients = Patient::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $employees = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $services = Service::all()->pluck('name', 'id');
 
-        return view('admin.appointments.create', compact('clients', 'employees', 'services'));
+        return view('admin.appointments.create', compact('patients', 'employees', 'services'));
     }
 
     public function store(StoreAppointmentRequest $request)
@@ -101,15 +101,15 @@ class AppointmentsController extends Controller
     {
         abort_if(Gate::denies('appointment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $clients = Client::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $patients = Patient::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $employees = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $services = Service::all()->pluck('name', 'id');
 
-        $appointment->load('client', 'employee', 'services');
+        $appointment->load('patient', 'employee', 'services');
 
-        return view('admin.appointments.edit', compact('clients', 'employees', 'services', 'appointment'));
+        return view('admin.appointments.edit', compact('patients', 'employees', 'services', 'appointment'));
     }
 
     public function update(UpdateAppointmentRequest $request, Appointment $appointment)
@@ -124,7 +124,7 @@ class AppointmentsController extends Controller
     {
         abort_if(Gate::denies('appointment_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $appointment->load('client', 'employee', 'services');
+        $appointment->load('patient', 'employee', 'services');
 
         return view('admin.appointments.show', compact('appointment'));
     }
