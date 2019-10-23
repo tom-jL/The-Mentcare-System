@@ -37,6 +37,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <ul class="nav navbar-nav ml-auto">
             @if(count(config('panel.available_languages', [])) > 1)
                 <li class="nav-item dropdown d-md-down-none">
@@ -51,9 +52,9 @@
                 </li>
             @endif
 
-
         </ul>
-    </header>
+        <p style="margin-right: 3em; margin-top: 1em">You are logged in as {{ Auth::user()->name}}</p>
+    </header>}
 
     <div class="app-body">
         @include('partials.menu')
